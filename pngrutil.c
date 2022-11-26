@@ -4044,6 +4044,9 @@ static void
 png_read_filter_row_paeth_multibyte_pixel(png_row_infop row_info, png_bytep row,
     png_const_bytep prev_row)
 {
+   const png_const_bytep prev_row_start = prev_row;
+   const png_const_bytep row_start = row;
+
    unsigned int bpp = (row_info->pixel_depth + 7) >> 3;
    png_bytep rp_end = row + bpp;
 
@@ -4062,6 +4065,16 @@ png_read_filter_row_paeth_multibyte_pixel(png_row_infop row_info, png_bytep row,
    while (row < rp_end)
    {
       int a, b, c, pa, pb, pc, p;
+
+      if (prev_row-bpp < prev_row_start) {
+         fprintf(stderr, "MULTIBYTE PREV @%p<%p\n",
+                 prev_row-bpp, prev_row_start);
+         abort();
+      }
+      if (row-bpp < row_start) {
+         fprintf(stderr, "MULTIBYTE ROW @%p<%p\n", row-bpp, row_start);
+         abort();
+      }
 
       c = *(prev_row - bpp);
       a = *(row - bpp);
