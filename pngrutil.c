@@ -4611,7 +4611,8 @@ defined(PNG_USER_TRANSFORM_PTR_SUPPORTED)
          png_ptr->big_row_buf = (png_bytep)png_malloc(png_ptr, row_bytes + 48);
 
       png_ptr->big_prev_row = (png_bytep)png_malloc(png_ptr, row_bytes + 48);
-      
+     
+      //ensure that big_prev_row is completely initilised 
       memset(png_ptr->big_prev_row, 0, row_bytes + 48);
 
 #ifdef PNG_ALIGNED_MEMORY_SUPPORTED
