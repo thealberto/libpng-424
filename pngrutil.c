@@ -4052,6 +4052,13 @@ png_read_filter_row_paeth_multibyte_pixel(png_row_infop row_info, png_bytep row,
    png_bytep rp_end = row + bpp;
 
    printf("bpp: %d\n", bpp);
+   printf("prev_row: %p\n");
+   printf("prev_row_start: %p\n", prev_row_start);
+   printf("condition: %d\n", prev_row-bpp < prev_row_start); 
+
+   if (prev_row-bpp < prev_row_start) {
+	printf("YEEEEEEEEEES\n");
+   }
    /* Process the first pixel in the row completely (this is the same as 'up'
     * because there is only one candidate predictor for the first row).
     */
