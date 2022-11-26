@@ -4051,6 +4051,7 @@ png_read_filter_row_paeth_multibyte_pixel(png_row_infop row_info, png_bytep row,
    unsigned int bpp = (row_info->pixel_depth + 7) >> 3;
    png_bytep rp_end = row + bpp;
 
+   printf("bpp: %d\n", bpp);
    /* Process the first pixel in the row completely (this is the same as 'up'
     * because there is only one candidate predictor for the first row).
     */
