@@ -4669,7 +4669,7 @@ defined(PNG_USER_TRANSFORM_PTR_SUPPORTED)
 #endif
       png_ptr->old_big_row_buf_size = row_bytes + 48;
 
-      printf("png_ptr->row_buf: %p\n", png_ptr->row_buf);
+      printf("png_ptr->row_buf : %p\n", png_ptr->row_buf);
       printf("png_ptr->prev_row: %p\n", png_ptr->prev_row);
    }
 
