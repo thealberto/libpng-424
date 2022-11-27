@@ -4072,6 +4072,9 @@ png_read_filter_row_paeth_multibyte_pixel(png_row_infop row_info, png_bytep row,
    {
       int a, b, c, pa, pb, pc, p;
 
+      printf("row: %p\n", row);
+      printf("row_start: %p\n", row_start);
+
       if (row-bpp < row_start) {
          fprintf(stderr, "MULTIBYTE ROW @%p<%p\n", row-bpp, row_start);
          abort();
