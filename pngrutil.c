@@ -4052,36 +4052,26 @@ png_read_filter_row_paeth_multibyte_pixel(png_row_infop row_info, png_bytep row,
    png_bytep rp_end = row + bpp;
 
    printf("bpp: %d\n", bpp);
-   printf("prev_row: %p\n", prev_row);
-   printf("prev_row_start: %p\n", prev_row_start);
-   printf("condition: %d\n", prev_row-bpp < prev_row_start); 
-   if (prev_row-bpp < prev_row_start) {
-       fprintf(stderr, "MULTIBYTE PREV @%p<%p\n",
-               prev_row-bpp, prev_row_start);
-       abort();
-   }
 
    /* Process the first pixel in the row completely (this is the same as 'up'
     * because there is only one candidate predictor for the first row).
     */
+   printf("Processing the first pixel\n");
    while (row < rp_end)
    {
       int a = *row + *prev_row++;
       *row++ = (png_byte)a;
    }
 
+   printf("Remainder\n");
    /* Remainder */
    rp_end = rp_end + (row_info->rowbytes - bpp);
 
+   printf("while loop\n");
    while (row < rp_end)
    {
       int a, b, c, pa, pb, pc, p;
 
-      if (prev_row-bpp < prev_row_start) {
-         fprintf(stderr, "MULTIBYTE PREV @%p<%p\n",
-                 prev_row-bpp, prev_row_start);
-         abort();
-      }
       if (row-bpp < row_start) {
          fprintf(stderr, "MULTIBYTE ROW @%p<%p\n", row-bpp, row_start);
          abort();
