@@ -4108,11 +4108,12 @@ png_read_filter_row_paeth_multibyte_pixel(png_row_infop row_info, png_bytep row,
       pc = (p + pc) < 0 ? -(p + pc) : p + pc;
 #endif
 
-      printf("pb < pc ?\n");
+      printf("pb < pa ?\n");
       if (pb < pa)
       {
          pa = pb; a = b;
       }
+      printf("pc < pa ?\n");
       if (pc < pa) a = c;
 
       a += *row;
@@ -4668,6 +4669,7 @@ defined(PNG_USER_TRANSFORM_PTR_SUPPORTED)
 #endif
       png_ptr->old_big_row_buf_size = row_bytes + 48;
 
+      printf("png_ptr->row_buf: %p\n", png_ptr->row_buf);
       printf("png_ptr->prev_row: %p\n", png_ptr->prev_row);
    }
 
