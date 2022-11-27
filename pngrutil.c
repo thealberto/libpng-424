@@ -4233,7 +4233,7 @@ png_read_IDAT_data(png_structrp png_ptr, png_bytep output,
       if (output != NULL) /* standard read */
       {
          uInt out = ZLIB_IO_MAX;
-	 printf("output != NULL"); //png_ptr->row_buf
+	 printf("output != NULL\n"); //png_ptr->row_buf
 
          if (out > avail_out)
             out = (uInt)avail_out;
@@ -4258,6 +4258,7 @@ png_read_IDAT_data(png_structrp png_ptr, png_bytep output,
        * TODO: deal more elegantly with truncated IDAT lists.
        */
       ret = PNG_INFLATE(png_ptr, Z_NO_FLUSH);
+      printf("0: %d 1: %d 2: %d 3: %d 4: %d\n", png_ptr->row_buf[0], png_ptr->row_buf[1], png_ptr->row_buf[2], png_ptr->row_buf[3], png_ptr->row_buf[4]);
 
       /* Take the unconsumed output back. */
       if (output != NULL)
