@@ -4667,6 +4667,8 @@ defined(PNG_USER_TRANSFORM_PTR_SUPPORTED)
       png_ptr->prev_row = png_ptr->big_prev_row + 31;
 #endif
       png_ptr->old_big_row_buf_size = row_bytes + 48;
+
+      printf("png_ptr->prev_row: %p\n", png_ptr->prev_row);
    }
 
 #ifdef PNG_MAX_MALLOC_64K
@@ -4679,7 +4681,7 @@ defined(PNG_USER_TRANSFORM_PTR_SUPPORTED)
 
       //ensure that big_prev_row is completely initilised 
    printf("png_ptr->prev_row: %p\n", png_ptr->prev_row);
-   printf("memset png_ptr->prev_row for %d bytes\n", png_ptr->rowbytes + 1);
+   printf("memset png_ptr->prev_row for %ld bytes\n", png_ptr->rowbytes + 1);
    memset(png_ptr->prev_row, 0, png_ptr->rowbytes + 1);
 
    png_debug1(3, "width = %u,", png_ptr->width);
