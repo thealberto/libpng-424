@@ -4640,6 +4640,8 @@ defined(PNG_USER_TRANSFORM_PTR_SUPPORTED)
          png_ptr->big_row_buf = (png_bytep)png_malloc(png_ptr, row_bytes + 48);
 
       png_ptr->big_prev_row = (png_bytep)png_malloc(png_ptr, row_bytes + 48);
+      printf("png_ptr->big_row_buf:  %p\n", png_ptr->big_row_buf);
+      printf("png_ptr->big_prev_row: %p\n", png_ptr->big_prev_row);
      
 
 #ifdef PNG_ALIGNED_MEMORY_SUPPORTED
@@ -4676,7 +4678,9 @@ defined(PNG_USER_TRANSFORM_PTR_SUPPORTED)
       png_error(png_ptr, "Row has too many bytes to allocate in memory");
 
       //ensure that big_prev_row is completely initilised 
-      memset(png_ptr->big_prev_row, 0, row_bytes + 48);
+   printf("png_ptr->prev_row: %p\n", png_ptr->prev_row);
+   printf("memset png_ptr->prev_row for %d bytes\n", png_ptr->rowbytes + 1);
+   memset(png_ptr->prev_row, 0, png_ptr->rowbytes + 1);
 
    png_debug1(3, "width = %u,", png_ptr->width);
    png_debug1(3, "height = %u,", png_ptr->height);
