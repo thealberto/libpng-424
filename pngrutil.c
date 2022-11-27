@@ -4060,6 +4060,7 @@ png_read_filter_row_paeth_multibyte_pixel(png_row_infop row_info, png_bytep row,
    while (row < rp_end)
    {
       int a = *row + *prev_row++;
+      printf("Increasing row\n");
       *row++ = (png_byte)a;
    }
 
@@ -4068,6 +4069,8 @@ png_read_filter_row_paeth_multibyte_pixel(png_row_infop row_info, png_bytep row,
    rp_end = rp_end + (row_info->rowbytes - bpp);
 
    printf("while loop\n");
+   printf("row: %p\n", row);
+   printf("rp_end: %p\n", rp_end);
    while (row < rp_end)
    {
       int a, b, c, pa, pb, pc, p;
