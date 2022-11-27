@@ -4197,6 +4197,7 @@ png_read_IDAT_data(png_structrp png_ptr, png_bytep output,
          uInt avail_in;
          png_bytep buffer;
 
+	 printf("png_ptr->zstream.avail_in == 0\n");
          while (png_ptr->idat_size == 0)
          {
             png_crc_finish(png_ptr, 0);
@@ -4232,16 +4233,19 @@ png_read_IDAT_data(png_structrp png_ptr, png_bytep output,
       if (output != NULL) /* standard read */
       {
          uInt out = ZLIB_IO_MAX;
+	 printf("output != NULL"); //png_ptr->row_buf
 
          if (out > avail_out)
             out = (uInt)avail_out;
 
          avail_out -= out;
          png_ptr->zstream.avail_out = out;
+	 printf("png_ptr->zstream.avail_out set to %u\n", out);
       }
 
       else /* after last row, checking for end */
       {
+	 printf("output == NULL\n");
          png_ptr->zstream.next_out = tmpbuf;
          png_ptr->zstream.avail_out = (sizeof tmpbuf);
       }
