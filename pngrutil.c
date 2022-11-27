@@ -4060,7 +4060,7 @@ png_read_filter_row_paeth_multibyte_pixel(png_row_infop row_info, png_bytep row,
    while (row < rp_end)
    {
       int a = *row + *prev_row++;
-      printf("Increasing row\n");
+      printf("\tIncreasing row\n");
       *row++ = (png_byte)a;
    }
 
@@ -4083,11 +4083,16 @@ png_read_filter_row_paeth_multibyte_pixel(png_row_infop row_info, png_bytep row,
          abort();
       }
 
+      printf("c = *(%p - %d)\n", prev_row, bpp);
       c = *(prev_row - bpp);
+      printf("a = *(%p - %d)\n", row, bpp);
       a = *(row - bpp);
+      printf("b = *(%p)\n", prev_row + 1);
       b = *prev_row++;
 
+      printf("p = b - c\n");
       p = b - c;
+      printf("pc = a - c\n");
       pc = a - c;
 
 #ifdef PNG_USE_ABS
@@ -4095,11 +4100,15 @@ png_read_filter_row_paeth_multibyte_pixel(png_row_infop row_info, png_bytep row,
       pb = abs(pc);
       pc = abs(p + pc);
 #else
+      printf("Setting pa\n");
       pa = p < 0 ? -p : p;
+      printf("Setting pb\n");
       pb = pc < 0 ? -pc : pc;
+      printf("Setting pc\n");
       pc = (p + pc) < 0 ? -(p + pc) : p + pc;
 #endif
 
+      printf("pb < pc ?\n");
       if (pb < pa)
       {
          pa = pb; a = b;
