@@ -540,10 +540,12 @@ png_read_row(png_structrp png_ptr, png_bytep row, png_bytep dsp_row)
 
    /* Fill the row with IDAT data: */
    png_ptr->row_buf[0]=255; /* to force error if no data was found */
+   memsey(png_ptr->row_buf, 0xff, 5);
+   printf("0: %ld, 1: %ld 2: %ld 3: %ld 4: %ld\n", png_ptr->row_buf[0], png_ptr->row_buf[1], png_ptr->row_buf[2], png_ptr->row_buf[3], png_ptr->row_buf[4]);
    printf("before png_read_IDAT_data -> png_ptr->row_buf: %p\n", png_ptr->row_buf);
    png_read_IDAT_data(png_ptr, png_ptr->row_buf, row_info.rowbytes + 1);
    printf("after png_read_IDAT_data -> png_ptr->row_buf: %p\n", png_ptr->row_buf);
-   printf("0: %d, 1: %d 2: %d 3: %d 4: %d\n", png_ptr->row_buf[0], png_ptr->row_buf[1], png_ptr->row_buf[2], png_ptr->row_buf[3], png_ptr->row_buf[4]);
+   printf("0: %ld, 1: %ld 2: %ld 3: %ld 4: %ld\n", png_ptr->row_buf[0], png_ptr->row_buf[1], png_ptr->row_buf[2], png_ptr->row_buf[3], png_ptr->row_buf[4]);
 
    if (png_ptr->row_buf[0] > PNG_FILTER_VALUE_NONE)
    {
