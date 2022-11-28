@@ -4200,6 +4200,7 @@ png_read_IDAT_data(png_structrp png_ptr, png_bytep output,
 	 printf("png_ptr->zstream.avail_in == 0\n");
          while (png_ptr->idat_size == 0)
          {
+	    printf("calling png_crc_finish\n");
             png_crc_finish(png_ptr, 0);
 
             png_ptr->idat_size = png_read_chunk_header(png_ptr);
