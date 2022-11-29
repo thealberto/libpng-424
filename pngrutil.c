@@ -4085,10 +4085,13 @@ png_read_filter_row_paeth_multibyte_pixel(png_row_infop row_info, png_bytep row,
 
       printf("c = *(%p - %d)\n", prev_row, bpp);
       c = *(prev_row - bpp);
+      printf("c = %d\n", c);
       printf("a = *(%p - %d)\n", row, bpp);
       a = *(row - bpp);
+      printf("a = %d\n", a);
       printf("b = *(%p)\n", prev_row);
       b = *prev_row++;
+      printf("b = %d\n", b);
 
       printf("p = b - c\n");
       p = b - c;
