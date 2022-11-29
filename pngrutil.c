@@ -4087,7 +4087,7 @@ png_read_filter_row_paeth_multibyte_pixel(png_row_infop row_info, png_bytep row,
       c = *(prev_row - bpp);
       printf("a = *(%p - %d)\n", row, bpp);
       a = *(row - bpp);
-      printf("b = *(%p)\n", prev_row + 1);
+      printf("b = *(%p)\n", prev_row);
       b = *prev_row++;
 
       printf("p = b - c\n");
@@ -4690,7 +4690,7 @@ defined(PNG_USER_TRANSFORM_PTR_SUPPORTED)
       png_error(png_ptr, "Row has too many bytes to allocate in memory");
 
       //ensure that big_prev_row is completely initilised 
-   printf("memset png_ptr->prev_row for %ld bytes. [ %p - %p ]\n", png_ptr->rowbytes + 1, png_ptr->prev_row, png_ptr->prev_row + ( png_ptr->rowbytes + 1 )   );
+   printf("memset png_ptr->prev_row for %ld bytes. [ %p - %p ]\n", png_ptr->rowbytes + 1, png_ptr->prev_row, png_ptr->prev_row + png_ptr->rowbytes );
    memset(png_ptr->prev_row, 0, png_ptr->rowbytes + 1);
 
    png_debug1(3, "width = %u,", png_ptr->width);
