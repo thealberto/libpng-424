@@ -50,7 +50,7 @@ make -j$(nproc) libpng16.la
 $CXX $CXXFLAGS -std=c++11 -I. \
      $SRC/libpng/contrib/oss-fuzz/libpng_read_fuzzer.cc \
      -o $OUT/libpng_read_fuzzer \
-     -lFuzzingEngine .libs/libpng16.a -lz
+     -lFuzzingEngine .libs/libpng16.a ../zlib/libz.a
 
 # add seed corpus.
 find $SRC/libpng -name "*.png" | grep -v crashers | \
