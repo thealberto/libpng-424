@@ -22,6 +22,16 @@
 # 3. Build zlib alongside libpng
 ################################################################################
 
+
+##### zlib #####
+
+cd ../zlib
+../build-zlib.sh
+cd ../libpng
+
+################
+
+
 # Disable logging via library build configuration control.
 cat scripts/pnglibconf.dfa | \
   sed -e "s/option STDIO/option STDIO disabled/" \
